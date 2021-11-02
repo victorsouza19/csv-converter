@@ -39,7 +39,7 @@ de orientação a objetos e programação assíncrona aplicados na prática.</h4
 
 <div align="left">
   Com base em um projeto aplicado no curso Formação Node.js, desenvolvi esse conversor de CSV com toda a interface web que ainda não existia, 
-  buscando consolidar meus aprendizados em html, css(sem bootstrap (: ) e javascript e os conceitos de programação assíncrona e orientação a objetos no desenvolvimento do projeto.
+  buscando consolidar meus aprendizados em html, css(e algumas animações com animate.css (: ) e javascript e os conceitos de programação assíncrona e orientação a objetos no desenvolvimento do projeto.
   Para o upload de arquivos utilizamos o multer, ejs para conversão em HTML e html-pdf para conversão em PDF, além de bibliotecas do próprio node e do express.
 </div>
 
