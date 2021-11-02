@@ -8,8 +8,6 @@
 
   <link rel="stylesheet" href="/css/style.css">
   <link rel="shortcut icon" href="/img/icon.ico" type="image/x-icon">
-
-  <script src="/js/file.js" defer></script>
 </head>
 <body>
   <div class="navbar">
@@ -33,27 +31,15 @@
       <div class="info">
         <h3>Conversor de CSV para HTML e PDF online!</h3>
       </div>
-      <div class="card">
-        <form method="POST" enctype="multipart/form-data" action="/convert">
-          <img src="/img/files.svg" alt="">
-          <h4>Escolha a opção desejada:</h4>
-          <div class="options">
-            <div class="option">
-              <input type="radio" name="option" value="html" >
-              <span>HTML</span>
-            </div>
-            <div class="option">
-              <input type="radio" name="option" value="pdf" >
-            <span>PDF</span>
-            </div>
+      <div class="card card-completed">
+          <img class="completed" src="/img/completed.svg" alt="completed-img">
+          <h4>Arquivo convertido!</h4>
+          <span>Obrigado por converter seu arquivo conosco, caso tenha gostado do projeto, visite meu Github e deixe a sua ⭐ no reposítorio  (: </span>
+          <div class="button-options">
+            <a href="https://github.com/victorsouza19">Visitar Repositório</a>
+            <a href="/">Converter novo arquivo</a>
           </div>
-          <label for="file" class="input-label">
-            <span class="text">Selecionar arquivo</span>
-            <span class="plus-icon"><img src="/img/plus.svg" alt="plus"></span>
-          </label>
-          <input type="file" accept=".csv" name="file" id="file">
-          <button type="submit">Converter</button> 
-        </form>
+          
       </div>
     </div>
   </div>

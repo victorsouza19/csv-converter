@@ -1,10 +1,15 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+
+
 :root{
-  --text-color2: #0511F2;
-  --color-2: #040DBF;
-  --color-3: #030A8C;
+  --text-color2: #6530D9;
+  --color-2: #4226A6;
+  --color-3: #1B0140;
   --body-bg: #020659;
-  --card-bg: #0D0D0D;
-  --text-color: #FFF;
+  --text-color: #0D0D0D;
+  --card-bg: #FFF;
+  --dark-bg: #100126;
 }
 
 
@@ -24,43 +29,132 @@
 }
 
 body{
-  background-color: var(--body-bg);
+  background: linear-gradient( 180deg, var(--text-color2), var(--color-2), var(--color-3));
   color: var(--text-color);
+  font-family: 'Lato', sans-serif;
+
+  width: 100vw;
+  height: 100vh;
 }
+
+/*
+==================================
+  Navbar
+==================================
+*/
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  height: 5%;
+}
+
+.navbar img{
+  height: 100%;
+  border-radius: 50%;
+}
+
+.navbar a{
+  color: var(--card-bg);
+  text-decoration: none;
+}
+
+.navbar ul{
+  display: flex;
+  list-style: none;
+  justify-content: flex-end;
+  padding: 0.5em;
+}
+
+.navbar ul li{
+  padding: 0 0.5em;
+}
+
+
+/*
+==================================
+  Container
+==================================
+*/
 
 .container{
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: 100vw;
-  height: 100vh;
+  height: 95%;
 }
 
+.content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/*
+==================================
+  Info
+==================================
+*/
+
+.info{
+  padding-bottom: 4em;
+}
+.info h3{
+  text-align: center;
+  color: var(--card-bg);
+  font-weight: 300;
+  padding: 0.2em;
+}
+
+/*
+==================================
+  Card
+==================================
+*/
 .card{
   background: var(--card-bg);
-  width: 60%;
-  height: 50%;
+  width: 95%;
+  padding: 2.5em 2em;
   border-radius: 0.8em;
-  box-shadow: 0px 0px 6px var(--text-color);
 
   display: flex;
   justify-content: center;
 }
 
-form{
+form,
+.card-completed{
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
 }
 
-form h4{
-  font-size: 2.0em;
+
+
+form h4,
+.card-completed h4{
+  margin: 0.5em 0;
+  font-size: 1.6em;
+  text-align: center;
+}
+
+.card-completed span{
+  margin: 1em 0;
+  font-size: 1.1em;
+  font-weight: 400;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .options{
-  font-size: 1.8em;
+  font-size: 1.4em;
+  font-weight: 400;
+  margin: 1em 0;
 
   display: flex;
   flex-direction: column;
@@ -75,20 +169,78 @@ form h4{
   display: flex;
   align-items: center;
 
-  padding: 0.5em 0;
+  padding: 0.3em 0;
 }
 
 .option span{
   padding-left: 0.5em;
 }
 
+.button-options{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
 
-button{
+.button-options a:first-child{
+  margin: 2em 0 0.5em 0;
+}
+
+form button,
+.button-options a{
   text-decoration: none;
   border: 0;
   width: 100%;
+  font-size: 1em;
+  font-weight: 400;
   padding: 1em;
   border-radius: 0.5em;
   background: var(--text-color2);
-  color: var(--text-color)
+  color: var(--card-bg)
+}
+
+.button-options a:last-child{
+  background: none;
+  border: 1px solid var(--text-color2);
+  color: var(--text-color2);
+}
+
+form img,
+.completed{
+  max-width: 50%;
+}
+
+input[type="file"]{
+  display: none;
+}
+
+.input-label{
+  margin:  0 0 3em 0 ;
+  padding: 0.2rem;
+  width: 100%;
+
+  display: flex;
+  font-size: 1em;
+
+  border: 2px solid #ebebeb;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.input-label span:first-child{
+  padding: 0.5em;
+  width: 100%;
+}
+
+.plus-icon{
+  background-color: var(--text-color2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+
+  border-radius: 0.5em;
 }

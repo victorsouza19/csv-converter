@@ -1,1 +1,10 @@
 node_modules/
+
+
+# pasta onde os arquivos são carregados.
+uploads/*
+!uploads/.gitkeep
+
+# pasta onde os arquivos convertidos são salvos.
+converted/*
+!converted/.gitkeep
