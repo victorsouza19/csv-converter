@@ -12,15 +12,11 @@
   --dark-bg: #100126;
 }
 
-
-/* Color Theme Swatches in RGBA 
-.Design-gráfico-1-rgba { color: rgba(4, 16, 242, 1); }
-.Design-gráfico-2-rgba { color: rgba(3, 13, 191, 1); }
-.Design-gráfico-3-rgba { color: rgba(2, 9, 140, 1); }
-.Design-gráfico-4-rgba { color: rgba(1, 6, 89, 1); }
-.Design-gráfico-5-rgba { color: rgba(12, 12, 12, 1); }
+/*
+==================================
+  Global
+==================================
 */
-
 
 * {
   margin: 0;
@@ -32,6 +28,7 @@ body{
   background: linear-gradient( 180deg, var(--text-color2), var(--color-2), var(--color-3));
   color: var(--text-color);
   font-family: 'Lato', sans-serif;
+  font-size: 100%;
 
   width: 100vw;
   height: 100vh;
@@ -51,7 +48,6 @@ body{
 
 .navbar img{
   height: 100%;
-  border-radius: 50%;
 }
 
 .navbar a{
@@ -113,6 +109,7 @@ body{
   Card
 ==================================
 */
+
 .card{
   background: var(--card-bg);
   width: 95%;
@@ -138,6 +135,16 @@ form h4,
   margin: 0.5em 0;
   font-size: 1.6em;
   text-align: center;
+}
+
+.card-completed h4{
+  margin: 0.5em 0 0.1em 0;
+}
+
+.card-completed small{
+  margin: 0 0 0.5em 0;
+  font-size: 0.75em;
+  color: var(--text-color2);
 }
 
 .card-completed span{
@@ -176,6 +183,20 @@ form h4,
   padding-left: 0.5em;
 }
 
+button, a{
+  cursor: pointer;
+}
+
+form button:hover, 
+.button-options a:hover{
+  display: inline-block;
+  margin: 0 0.5rem;
+
+  animation: headShake; 
+  animation-duration: 2s; 
+}
+
+
 .button-options{
   display: flex;
   flex-direction: column;
@@ -209,7 +230,7 @@ form button,
 }
 
 form img,
-.completed{
+.completed-img{
   max-width: 50%;
 }
 
@@ -243,4 +264,67 @@ input[type="file"]{
   width: 30%;
 
   border-radius: 0.5em;
+}
+
+/*
+MEDIA QUERIES: 
+
+320px — 480px: Mobile devices
+481px — 768px: iPads, Tablets
+769px — 1024px: Small screens, laptops
+1025px — 1200px: Desktops, large screens
+1201px and more —  Extra large screens, TV
+
+*/
+
+@media screen and (min-width: 481px) and (max-width: 768px){
+
+  form img,
+  .completed-img{
+  max-width: 40%;
+  }
+
+  form h4,
+  .card-completed h4{
+    font-size: 1.7em;
+  }
+
+  .input-label{
+    font-size: 1.1em;
+  }
+
+  form button,
+  .button-options a{
+    font-size: 1.1em;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  form img,
+  .completed-img{
+  max-width: 30%;
+  }
+
+  form h4,
+  .card-completed h4{
+    font-size: 1.9em;
+  }
+
+  .input-label{
+    font-size: 1.3em;
+  }
+
+  form button,
+  .button-options a{
+    font-size: 1.3em;
+  }
+
+  .info h3{
+    font-size: 1.5rem;
+  }
+
+  .card{
+    width: 80%;
+  }
+
 }

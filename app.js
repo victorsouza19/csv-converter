@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const multer = require("multer");
 const path = require("path");
+const fs = require('fs');
 
 // Importando as classes para acesso aos métodos.
 let Reader = require("./js/Reader");
@@ -11,7 +12,7 @@ let HtmlParser = require("./js/HtmlParser");
 let Writer = require("./js/Writer");
 let PdfWriter = require("./js/PdfWriter");
 
-// multer config
+// configuração do multer para receber os arquivos
 const storage = multer.diskStorage({
   destination: function(req, file, cb){
     cb(null, "uploads/")
@@ -21,17 +22,16 @@ const storage = multer.diskStorage({
       file.originalname + Date.now() + path.extname(file.originalname));
   }
 });
-
 const upload = multer({storage});
 
 // express configs
 app.set("view engine", "ejs");
 
-// setting parser congifs
+// parser congifs
 app.use(express.json());
 app.use(express({urlencoded: true}));
 
-// setting public directory
+// configurando o diretório public
 app.use(express.static("./public"));
 
 
@@ -40,7 +40,7 @@ let reader = new Reader();
 let writer = new Writer();
 
 
-// criando uma função principal para poder executar métodos de forma assíncrona.
+// Função principal para executar métodos de forma assíncrona.
 async function main(option, file){
 
   // Leitura do arquivo .csv
@@ -58,36 +58,49 @@ async function main(option, file){
   if(option == "html"){
 
     // Gerando arquivo html 
-    writer.Write("./converted/"+ file + "_converted.html", html);
+    await writer.Write("./converted/"+ file + "_converted.html", html);
     return document = `./converted/${file}_converted.html`;
 
   } else if (option == "pdf"){
 
     // Gerando arquivo PDF
-    PdfWriter.Write("./converted/"+ file + "_converted.PDF", html);
+    let result = await PdfWriter.Write("./converted/"+ file + "_converted.PDF", html);
     return document = `./converted/${file}_converted.PDF`;
-
   } 
 }
 
+// rota principal
 app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/completed", (req, res) => {
-  res.render("completed");
-});
-
-
+// rota de envio para converter arquivo com o multer middleware
 app.post("/convert", upload.single("file"), async (req, res) => {
-  const { option } = await req.body;
+  const { option } = await req.body; 
+  const filename = req.file.filename;
 
-  const converted = await main(option, req.file.filename);
+  // recebendo o caminho do arquivo convertido
+  const converted = await main(option, filename); 
+
+  // definindo um tempo de exclusão dos arquivos no servidor
+  setTimeout(() => {
+    // Deletando os arquivos após 10 segundos
+    fs.unlink(converted, (err) => {
+    if (err) throw err;
+    console.log('Arquivo convertido deletado!');
+    });
+    fs.unlink("./uploads/" + filename, (err) => { 
+      if(err) throw err; 
+      console.log('Arquivo original deletado!');
+    });
+
+  }, 8000);
   
-  res.send(converted);
+  // enviando o arquivo para download no client side
+  res.download(converted);
 });
 
-// setting server port
+// iniciando servidor
 app.listen(8080, () => {
   console.log("Server running!");
 });

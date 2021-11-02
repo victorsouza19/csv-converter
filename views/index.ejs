@@ -7,23 +7,24 @@
   <title>Conversor de CSV</title>
 
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="shortcut icon" href="/img/icon.ico" type="image/x-icon">
 
   <script src="/js/file.js" defer></script>
 </head>
 <body>
-  <div class="navbar">
+  <div class="navbar animate__animated animate__slideInLeft">
     <ul>
       <li>
-        <img src="https://github.com/victorsouza19.png" alt="creator_img">
+        <img src="/img/icon.svg" alt="csv_img">
       </li>
     </ul>
     <ul>
       <li>
-        <a href="https://www.linkedin.com/in/victorsouza19">Linkedin</a>
+        <a href="https://www.linkedin.com/in/victorsouza19" target="_blank">Linkedin</a>
       </li>
       <li>
-        <a href="https://github.com/victorsouza19">Github</a>
+        <a href="https://github.com/victorsouza19" target="_blank">Github</a>
       </li>
     </ul>
   </div>
@@ -31,19 +32,19 @@
   <div class="container">
     <div class="content">
       <div class="info">
-        <h3>Conversor de CSV para HTML e PDF online!</h3>
+        <h3 class="animate__animated animate__slideInRight">Conversor de CSV para HTML e PDF online!</h3>
       </div>
-      <div class="card">
-        <form method="POST" enctype="multipart/form-data" action="/convert">
+      <div id="convert" style="display: block;" class="card animate__animated animate__zoomIn">
+        <form method="POST" enctype="multipart/form-data" action="/convert" onsubmit="setCard(event, this)">
           <img src="/img/files.svg" alt="">
           <h4>Escolha a opção desejada:</h4>
           <div class="options">
             <div class="option">
-              <input type="radio" name="option" value="html" >
+              <input type="radio" name="option" value="html" required>
               <span>HTML</span>
             </div>
             <div class="option">
-              <input type="radio" name="option" value="pdf" >
+              <input type="radio" name="option" value="pdf" required>
             <span>PDF</span>
             </div>
           </div>
@@ -51,11 +52,37 @@
             <span class="text">Selecionar arquivo</span>
             <span class="plus-icon"><img src="/img/plus.svg" alt="plus"></span>
           </label>
-          <input type="file" accept=".csv" name="file" id="file">
-          <button type="submit">Converter</button> 
+          <input type="file" accept=".csv" name="file" id="file" onchange="validateFileType()" required>
+          <button type="submit" onclick>Converter</button> 
         </form>
+      </div>
+      <div id="completed" style="display: none;" class="card animate__animated">
+        <div class="card-completed">
+          <img class="completed-img" src="/img/completed.svg" alt="completed-img">
+          <h4>Arquivo convertido!</h4>
+          <small>seu download começará em segundos</small>
+          <span>Obrigado por converter seu arquivo conosco, caso tenha gostado do projeto, visite meu Github e deixe a sua ⭐ no reposítorio  (: </span>
+          <div class="button-options">
+            <a href="https://github.com/victorsouza19/csv-converter" target="_blank">Visitar Repositório</a>
+            <a href="/">Converter novo arquivo</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </body>
+<script type="text/javascript">
+  // validando se o arquivo enviado tem a extensão .csv
+function validateFileType(){
+  let file = document.getElementById("file");
+  let fileName = file.value;
+  let idxDot = fileName.lastIndexOf(".") + 1;
+  let extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+  if (extFile != "csv"){
+    alert('Somente arquivos CSV são aceitos!');
+    file.value = "";
+    document.querySelector('.text').textContent = "Selecionar arquivo";
+  }   
+}
+</script>
 </html>
