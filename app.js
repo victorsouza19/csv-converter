@@ -29,7 +29,7 @@ app.set("view engine", "ejs");
 
 // parser congifs
 app.use(express.json());
-app.use(express({urlencoded: true}));
+app.use(express.urlencoded({extended: false}));
 
 // configurando o diretório public
 app.use(express.static("./public"));
